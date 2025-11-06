@@ -12,8 +12,10 @@ function guardarJSON(ruta, datos) {
   fs.writeFileSync(ruta, JSON.stringify(datos, null, 2));
 }
 
+// 📜 Listar todos
 exports.listar = () => leerJSON(rutaProductos);
 
+// 📜 Listar con categorías (extra)
 exports.listarConCategorias = () => {
   const productos = leerJSON(rutaProductos);
   const categorias = leerJSON(rutaCategorias);
@@ -23,8 +25,13 @@ exports.listarConCategorias = () => {
   });
 };
 
-exports.buscarPorId = (id) => leerJSON(rutaProductos).find(p => p.id === id);
+// 🔍 Buscar por ID
+exports.buscarPorId = (id) => {
+  const datos = leerJSON(rutaProductos);
+  return datos.find(p => p.id === id);
+};
 
+// ➕ Crear
 exports.crear = (nuevo) => {
   const datos = leerJSON(rutaProductos);
   nuevo.id = datos.length ? Math.max(...datos.map(p => p.id)) + 1 : 1;
@@ -33,6 +40,7 @@ exports.crear = (nuevo) => {
   return nuevo;
 };
 
+// ✏️ Actualizar
 exports.actualizar = (id, cambios) => {
   const datos = leerJSON(rutaProductos);
   const index = datos.findIndex(p => p.id === id);
@@ -42,6 +50,7 @@ exports.actualizar = (id, cambios) => {
   return datos[index];
 };
 
+// ❌ Eliminar
 exports.eliminar = (id) => {
   const datos = leerJSON(rutaProductos);
   const index = datos.findIndex(p => p.id === id);
