@@ -1,8 +1,20 @@
 const express = require('express');
+const fs = require('fs');
 const app = express();
+const PORT = 3000;
+
 app.use(express.json());
-// Importar rutas
-app.use('/api/productos', require('./routes/productosRoutes'));
-//definir el resto de routes
-//Mejora solicitada, guardar en un log de json todas las llamadas a la API
-app.listen(3000, () => console.log('Servidor escuchando en http://localhost:3000'));
+
+app.get('/api/productos', (req, res) => {
+  const data = fs.readFileSync('./data/productos.json');
+  res.json(JSON.parse(data));
+});
+
+app.get('/api/categorias', (req, res) => {
+  const data = fs.readFileSync('./data/categorias.json');
+  res.json(JSON.parse(data));
+});
+
+app.listen(PORT, () => {
+  console.log(`✅ Servidor escuchando en http://localhost:${PORT}`);
+});
