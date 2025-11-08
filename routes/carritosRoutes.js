@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const carritosController = require('../controllers/carritosController'); // ← plural
+const carritosController = require('../controllers/carritosController');
 
 router.get('/', carritosController.obtenerTodos);
 router.get('/:id', carritosController.obtenerPorId);
