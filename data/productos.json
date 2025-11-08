@@ -1,14 +1,8 @@
 [
   {
-    "id": 1,
-    "nombre": "Teclado mecánico RGB",
-    "precio": 49.99,
-    "categoriaId": 1
-  },
-  {
     "id": 2,
     "nombre": "Ratón gamer inalámbrico",
-    "precio": 29.99,
+    "precio": 34.99,
     "categoriaId": 1
   },
   {
@@ -34,5 +28,11 @@
     "precio": 149.99,
     "categoriaId": 4,
     "id": 6
+  },
+  {
+    "nombre": "Monitor 24 pulgadas",
+    "precio": 149.99,
+    "categoriaId": 2,
+    "id": 7
   }
 ]
