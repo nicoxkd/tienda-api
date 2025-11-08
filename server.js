@@ -2,18 +2,23 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-// Middleware para interpretar JSON
 app.use(express.json());
 
 // Importar rutas
 const productosRoutes = require('./routes/productosRoutes');
+const categoriasRoutes = require('./routes/categoriasRoutes');
+const clientesRoutes = require('./routes/clientesRoutes');
+const pedidosRoutes = require('./routes/pedidosRoutes');
+const proveedoresRoutes = require('./routes/proveedoresRoutes');
+const carritosRoutes = require('./routes/carritosRoutes');
 
-// Usar las rutas con el prefijo /api/productos
+// Usar rutas
 app.use('/api/productos', productosRoutes);
-
-// Si quieres, también puedes importar categorías más tarde:
-// const categoriasRoutes = require('./routes/categoriasRoutes');
-// app.use('/api/categorias', categoriasRoutes);
+app.use('/api/categorias', categoriasRoutes);
+app.use('/api/clientes', clientesRoutes);
+app.use('/api/pedidos', pedidosRoutes);
+app.use('/api/proveedores', proveedoresRoutes);
+app.use('/api/carritos', carritosRoutes);
 
 app.listen(PORT, () => {
   console.log(`✅ Servidor escuchando en http://localhost:${PORT}`);

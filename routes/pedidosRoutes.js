@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const pedidosController = require('../controllers/pedidosController');
+const carritosController = require('../controllers/carritosController');
 
-router.get('/', pedidosController.obtenerTodos);
-router.get('/:id', pedidosController.obtenerPorId);
-router.post('/', pedidosController.crear);
-router.put('/:id', pedidosController.actualizar);
-router.delete('/:id', pedidosController.eliminar);
+router.get('/', carritosController.obtenerTodos);
+router.get('/:id', carritosController.obtenerPorId);
+router.post('/', carritosController.agregar);
+router.put('/:id', carritosController.actualizar);
+router.delete('/:id', carritosController.eliminar);
 
 module.exports = router;

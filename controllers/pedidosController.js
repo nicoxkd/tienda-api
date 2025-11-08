@@ -1,30 +1,30 @@
 const pedidosService = require('../services/pedidosService');
 
 exports.obtenerTodos = (req, res) => {
-  const pedidos = pedidosService.listarConProductos();
+  const pedidos = pedidosService.listar();
   res.json(pedidos);
 };
 
 exports.obtenerPorId = (req, res) => {
-  const pedido = pedidosService.buscarPorId(parseInt(req.params.id));
-  pedido ? res.json(pedido) : res.status(404).json({ mensaje: 'Pedido no encontrado' });
+  const id = parseInt(req.params.id);
+  const pedido = pedidosService.buscarPorId(id);
+  if (pedido) res.json(pedido);
+  else res.status(404).json({ mensaje: 'Pedido no encontrado' });
 };
 
 exports.crear = (req, res) => {
-  try {
-    const nuevo = pedidosService.crear(req.body);
-    res.status(201).json(nuevo);
-  } catch (e) {
-    res.status(400).json({ error: e.message });
-  }
+  const nuevo = pedidosService.crear(req.body);
+  res.status(201).json(nuevo);
 };
 
 exports.actualizar = (req, res) => {
-  const actualizado = pedidosService.actualizar(parseInt(req.params.id), req.body);
+  const id = parseInt(req.params.id);
+  const actualizado = pedidosService.actualizar(id, req.body);
   actualizado ? res.json(actualizado) : res.status(404).json({ mensaje: 'Pedido no encontrado' });
 };
 
 exports.eliminar = (req, res) => {
-  const eliminado = pedidosService.eliminar(parseInt(req.params.id));
+  const id = parseInt(req.params.id);
+  const eliminado = pedidosService.eliminar(id);
   eliminado ? res.json(eliminado) : res.status(404).json({ mensaje: 'Pedido no encontrado' });
 };

@@ -1,29 +1,30 @@
 const proveedoresService = require('../services/proveedoresService');
 
 exports.obtenerTodos = (req, res) => {
-  res.json(proveedoresService.listar());
+  const proveedores = proveedoresService.listar();
+  res.json(proveedores);
 };
 
 exports.obtenerPorId = (req, res) => {
-  const p = proveedoresService.buscarPorId(parseInt(req.params.id));
-  p ? res.json(p) : res.status(404).json({ mensaje: 'Proveedor no encontrado' });
+  const id = parseInt(req.params.id);
+  const proveedor = proveedoresService.buscarPorId(id);
+  if (proveedor) res.json(proveedor);
+  else res.status(404).json({ mensaje: 'Proveedor no encontrado' });
 };
 
 exports.crear = (req, res) => {
-  try {
-    const nuevo = proveedoresService.crear(req.body);
-    res.status(201).json(nuevo);
-  } catch (e) {
-    res.status(400).json({ error: e.message });
-  }
+  const nuevo = proveedoresService.crear(req.body);
+  res.status(201).json(nuevo);
 };
 
 exports.actualizar = (req, res) => {
-  const actualizado = proveedoresService.actualizar(parseInt(req.params.id), req.body);
+  const id = parseInt(req.params.id);
+  const actualizado = proveedoresService.actualizar(id, req.body);
   actualizado ? res.json(actualizado) : res.status(404).json({ mensaje: 'Proveedor no encontrado' });
 };
 
 exports.eliminar = (req, res) => {
-  const eliminado = proveedoresService.eliminar(parseInt(req.params.id));
+  const id = parseInt(req.params.id);
+  const eliminado = proveedoresService.eliminar(id);
   eliminado ? res.json(eliminado) : res.status(404).json({ mensaje: 'Proveedor no encontrado' });
 };

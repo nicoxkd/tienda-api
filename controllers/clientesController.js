@@ -1,29 +1,30 @@
 const clientesService = require('../services/clientesService');
 
 exports.obtenerTodos = (req, res) => {
-  res.json(clientesService.listar());
+  const clientes = clientesService.listar();
+  res.json(clientes);
 };
 
 exports.obtenerPorId = (req, res) => {
-  const c = clientesService.buscarPorId(parseInt(req.params.id));
-  c ? res.json(c) : res.status(404).json({ mensaje: 'Cliente no encontrado' });
+  const id = parseInt(req.params.id);
+  const cliente = clientesService.buscarPorId(id);
+  if (cliente) res.json(cliente);
+  else res.status(404).json({ mensaje: 'Cliente no encontrado' });
 };
 
 exports.crear = (req, res) => {
-  try {
-    const nuevo = clientesService.crear(req.body);
-    res.status(201).json(nuevo);
-  } catch (e) {
-    res.status(400).json({ error: e.message });
-  }
+  const nuevo = clientesService.crear(req.body);
+  res.status(201).json(nuevo);
 };
 
 exports.actualizar = (req, res) => {
-  const actualizado = clientesService.actualizar(parseInt(req.params.id), req.body);
+  const id = parseInt(req.params.id);
+  const actualizado = clientesService.actualizar(id, req.body);
   actualizado ? res.json(actualizado) : res.status(404).json({ mensaje: 'Cliente no encontrado' });
 };
 
 exports.eliminar = (req, res) => {
-  const eliminado = clientesService.eliminar(parseInt(req.params.id));
+  const id = parseInt(req.params.id);
+  const eliminado = clientesService.eliminar(id);
   eliminado ? res.json(eliminado) : res.status(404).json({ mensaje: 'Cliente no encontrado' });
 };

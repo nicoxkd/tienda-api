@@ -1,3 +1,4 @@
 [
-{ "id": 1, "nombre": "Carlos Basulto", "email": "carlos@example.com" }
+  { "id": 1, "nombre": "Carlos López", "email": "carlos@example.com" },
+  { "id": 2, "nombre": "Ana García", "email": "ana@example.com" }
 ]

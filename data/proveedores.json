@@ -1,3 +1,4 @@
 [
-{ "id": 1, "nombre": "TechDistribuciones", "pais": "España" }
+  { "id": 1, "nombre": "TechDistribuciones", "telefono": "600123456" },
+  { "id": 2, "nombre": "PC World Supply", "telefono": "677987654" }
 ]
